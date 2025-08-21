@@ -1,0 +1,49 @@
+<h2>Dashboard</h2>
+
+<!-- Summary Cards -->
+<div class="summary-cards" *ngIf="summary">
+  <!-- Admin -->
+  <ng-container *ngIf="role === 'Admin'">
+    <mat-card class="summary-card">
+      <h3>Total Users</h3>
+      <p>{{ summary.totalUsers }}</p>
+    </mat-card>
+    <mat-card class="summary-card">
+      <h3>Total Tasks</h3>
+      <p>{{ summary.totalTasks }}</p>
+    </mat-card>
+  </ng-container>
+
+  <!-- Manager -->
+  <ng-container *ngIf="role === 'Manager'">
+    <mat-card class="summary-card">
+      <h3>Total Tasks</h3>
+      <p>{{ summary.totalTasks }}</p>
+    </mat-card>
+    <mat-card class="summary-card">
+      <h3>Pending Tasks</h3>
+      <p>{{ summary.totalTasks - summary.completed }}</p>
+    </mat-card>
+  </ng-container>
+
+  <!-- Employee -->
+  <ng-container *ngIf="role === 'Employee'">
+    <mat-card class="summary-card">
+      <h3>Assigned Tasks</h3>
+      <p>{{ summary.totalTasks }}</p>
+    </mat-card>
+    <mat-card class="summary-card">
+      <h3>Completed Tasks</h3>
+      <p>{{ summary.completed }}</p>
+    </mat-card>
+  </ng-container>
+</div>
+
+<!-- Status Chart -->
+<mat-card class="chart-card">
+  <h3>Task Status Overview</h3>
+  <canvas baseChart
+    [data]="pieChartData"
+    [type]="pieChartType">
+  </canvas>
+</mat-card>

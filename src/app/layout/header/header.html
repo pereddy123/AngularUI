@@ -1,0 +1,16 @@
+<mat-toolbar color="primary" class="main-header">
+  <span class="app-title">Worksphere</span>
+
+  <span class="spacer"></span>
+
+  <div class="user-info">
+    <span>{{ username }}</span>
+<span class="custom-chip">{{ role }}</span>
+
+
+  <button mat-icon-button class="logout-btn" (click)="logout()" title="Logout">
+  <mat-icon>logout</mat-icon>
+</button>
+
+  </div>
+</mat-toolbar>

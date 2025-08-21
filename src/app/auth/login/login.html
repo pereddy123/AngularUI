@@ -1,0 +1,11 @@
+<div class="login-wrapper">
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <h2>Worksphere Login</h2>
+
+    <input type="text" formControlName="username" placeholder="Username" />
+    <input type="password" formControlName="password" placeholder="Password" />
+    
+    <button type="submit">Login</button>
+    <p *ngIf="error" style="color: red;">{{ error }}</p>
+  </form>
+</div>

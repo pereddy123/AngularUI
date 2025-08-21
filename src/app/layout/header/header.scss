@@ -1,0 +1,52 @@
+
+.app-title {
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+
+
+.main-header {
+  background-color: #214997;
+  display: flex;
+  align-items: center;
+  padding: 0 20px;
+  color: #ffffff;
+
+ 
+}
+ .spacer {
+    flex: 1;
+  }
+
+  .user-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: medium;
+  }
+  
+
+.logout-btn {
+  color: #ffffff;
+
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+}
+
+mat-icon {
+  font-size: 24px;
+}
+.custom-chip {
+  display: inline-block;
+  padding: 4px 10px;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  border-radius: 12px;
+  font-size: 13px;
+  font-weight: 500;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+

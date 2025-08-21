@@ -1,0 +1,80 @@
+.user-role-badge {
+  margin-left: auto;
+  padding: 4px 12px;
+  background-color: #e3f2fd;
+  border-radius: 4px;
+  font-size: 13px;
+}
+:host {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+/* Make the full page into 3 vertical blocks: header, content, footer */
+app-header {
+  flex-shrink: 0;
+  height: 64px;
+}
+
+.layout-container {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+  background-color: #f3f6fb;
+  padding: 20px;
+  gap: 20px;
+}
+
+.sidebar-container {
+  width: 220px;
+ 
+
+  height: 100%; // ❗Stretch sidebar to full container height
+  background-color: #214997;
+  border-radius: 12px;
+  padding: 16px 12px;
+  margin-bottom: 20px; // ✅ space above footer
+  height: calc(100% - 40px); // optional if needed
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+
+  a {
+    color: white;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 6px;
+    text-decoration: none;
+    transition: background-color 0.3s;
+
+    mat-icon {
+         margin-bottom: -5px;
+      margin-right: 10px;
+      color: white;
+    }
+
+    &:hover {
+      background-color: rgba(154, 137, 137, 0.1);
+    }
+  }
+}
+
+.main-content {
+  flex: 1;
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 12px;
+  overflow-y: auto;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+/* Footer */
+app-footer {
+  flex-shrink: 0;
+  height: 40px;
+}
+
+
+

@@ -1,0 +1,41 @@
+<app-header></app-header>
+
+<div class="layout-container">
+  <!-- Sidebar -->
+  <aside class="sidebar-container">
+    <mat-nav-list>
+      <a mat-list-item routerLink="/dashboard">
+        <mat-icon>dashboard</mat-icon>
+        <span style="color:white">Dashboard</span>
+      </a>
+
+      <a mat-list-item routerLink="/tasks">
+        <mat-icon>assignment</mat-icon>
+        <span style="color:white">Tasks</span>
+      </a>
+
+      <a *ngIf="role === 'Admin'" mat-list-item routerLink="/admin/users">
+        <mat-icon>group</mat-icon>
+        <span style="color:white">Users</span>
+      </a>
+
+      <a mat-list-item (click)="logout()">
+        <mat-icon>logout</mat-icon>
+        <span style="color:white">Logout</span>
+      </a>
+    </mat-nav-list>
+  </aside>
+
+
+     <!--end-->
+
+
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+</div>
+
+<app-footer></app-footer>
+
+
+

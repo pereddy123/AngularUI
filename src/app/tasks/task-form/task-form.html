@@ -1,0 +1,17 @@
+<h2>Create New Task</h2>
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <label>Title:</label>
+  <input formControlName="title" />
+
+  <label>Description:</label>
+  <textarea formControlName="description"></textarea>
+
+  <label>Assign To (User ID):</label>
+  <input type="number" formControlName="assignedToUserId" />
+
+  <label>Due Date:</label>
+  <input type="date" formControlName="dueDate" />
+
+  <button type="submit">Create Task</button>
+</form>
+
