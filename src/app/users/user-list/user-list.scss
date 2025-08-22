@@ -1,0 +1,11 @@
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+}
+
+.user-table ::ng-deep .p-datatable-thead > tr > th,
+.user-table ::ng-deep .p-datatable-tbody > tr > td {
+  padding: 8px 10px;
+  font-size: 14px;
+}

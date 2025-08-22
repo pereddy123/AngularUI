@@ -5,12 +5,19 @@ import { UserService,UserDto } from '../../core/services/user-service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ToastService } from '../../core/services/toast-service';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { TableModule } from 'primeng/table';
+import { ButtonModule } from 'primeng/button';
 
 
 @Component({
   selector: 'app-user-list',
   templateUrl: './user-list.html',
-  imports: [CommonModule, RouterModule,MatSnackBarModule,MatProgressSpinnerModule],
+  imports: [CommonModule,
+    RouterModule,
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
+    TableModule,
+    ButtonModule],
   styleUrl: './user-list.scss'
 })
 export class UserList implements OnInit {

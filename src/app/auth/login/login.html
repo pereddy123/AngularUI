@@ -1,11 +1,23 @@
-<div class="login-wrapper">
-  <form [formGroup]="form" (ngSubmit)="submit()">
-    <h2>Worksphere Login</h2>
+<div class="login-page">
+  <div class="login-card">
+    <h2>Login</h2>
 
-    <input type="text" formControlName="username" placeholder="Username" />
-    <input type="password" formControlName="password" placeholder="Password" />
-    
-    <button type="submit">Login</button>
-    <p *ngIf="error" style="color: red;">{{ error }}</p>
-  </form>
+    <form [formGroup]="form" (ngSubmit)="submit()">
+      <div class="form-group">
+        <label>Email</label>
+        <input type="text" formControlName="username" />
+      </div>
+
+      <div class="form-group">
+        <label>Password</label>
+        <input type="password" formControlName="password" />
+      </div>
+
+      <div class="form-group">
+        <button type="submit">Login</button>
+      </div>
+
+      <p *ngIf="error" class="error-text">{{ error }}</p>
+    </form>
+  </div>
 </div>

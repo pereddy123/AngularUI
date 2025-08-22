@@ -1,17 +1,33 @@
 <h2>Create New Task</h2>
-<form [formGroup]="form" (ngSubmit)="submit()">
-  <label>Title:</label>
-  <input formControlName="title" />
 
-  <label>Description:</label>
-  <textarea formControlName="description"></textarea>
+<form [formGroup]="form" (ngSubmit)="submit()" class="task-form">
+  <!-- Title -->
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input pInputText id="title" formControlName="title" placeholder="Enter task title" />
+  </div>
 
-  <label>Assign To (User ID):</label>
-  <input type="number" formControlName="assignedToUserId" />
+  <!-- Description -->
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea pInputTextarea id="description" formControlName="description" rows="4" placeholder="Enter task description"></textarea>
+  </div>
 
-  <label>Due Date:</label>
-  <input type="date" formControlName="dueDate" />
+  <!-- Assigned User -->
+  <div class="form-group">
+    <label for="assignedToUserId">Assign To (User ID)</label>
+    <input type="number" pInputText id="assignedToUserId" formControlName="assignedToUserId" />
+  </div>
 
-  <button type="submit">Create Task</button>
+  <!-- Due Date -->
+  <div class="form-group">
+    <label for="dueDate">Due Date</label>
+    <p-calendar id="dueDate" formControlName="dueDate" dateFormat="yy-mm-dd" [showIcon]="true"></p-calendar>
+  </div>
+
+  <!-- Submit Button -->
+  <div class="form-group submit-button">
+    <button pButton type="submit" label="Create Task" icon="pi pi-check" class="p-button-success" [disabled]="form.invalid"></button>
+  </div>
 </form>
 

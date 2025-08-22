@@ -1,51 +1,38 @@
-<h3>Your Tasks</h3>
-<div class="filter-bar">
+<h3>Tasks</h3>
+
+<!-- <div class="filter-bar">
   <label for="statusFilter">Filter by Status:</label>
-  <select [(ngModel)]="selectedStatus" (change)="filterTasks()">
-    <option value="">All</option>
-    <option value="New">New</option>
-    <option value="In Progress">In Progress</option>
-    <option value="Completed">Completed</option>
-  </select>
-</div>
-<table *ngIf="tasks.length > 0; else noTasks">
-  <thead>
+  <p-dropdown 
+    [options]="statusOptions"
+    [(ngModel)]="selectedStatus"
+    placeholder="Select a status"
+    (onChange)="filterTasks()"
+    optionLabel="label"
+    styleClass="status-filter"
+  ></p-dropdown>
+</div> -->
+
+<p-table [value]="tasks" [paginator]="true" [rows]="10"   tableStyleClass="p-dense" [responsiveLayout]="'scroll'">
+  <ng-template pTemplate="header">
     <tr>
       <th>Title</th>
       <th>Status</th>
-      <th>Due</th>
+      <th>Due Date</th>
       <th *ngIf="role !== 'Employee'">Assigned To</th>
     </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let task of tasks">
+  </ng-template>
+  <ng-template pTemplate="body" let-task>
+    <tr>
       <td>{{ task.title }}</td>
       <td>
-  <span [ngClass]="task.status.toLowerCase()">
-    {{ task.status }}
-  </span>
-</td>
-<td>
-  <span *ngIf="role !== 'Employee'">{{ task.status }}</span>
-
-  <!-- Show dropdown only for Employee -->
-  <div *ngIf="role === 'Employee'">
-    <select [(ngModel)]="statusUpdates[task.id]">
-      <option value="New">New</option>
-      <option value="In Progress">In Progress</option>
-      <option value="Completed">Completed</option>
-    </select>
-    <button (click)="updateTaskStatus(task.id)">Update</button>
-  </div>
-</td>
-
-      <!-- <td>{{ task.status }}</td> -->
+        <span class="status-badge" [ngClass]="task.status.toLowerCase().replace(' ', '-')">
+          {{ task.status }}
+        </span>
+      </td>
       <td>{{ task.dueDate | date:'mediumDate' }}</td>
       <td *ngIf="role !== 'Employee'">{{ task.assignedToUsername }}</td>
     </tr>
-  </tbody>
-</table>
+  </ng-template>
+</p-table>
 
-<ng-template #noTasks>
-  <p>No tasks found.</p>
-</ng-template>
+<p *ngIf="tasks.length === 0" class="no-tasks">No tasks found.</p>

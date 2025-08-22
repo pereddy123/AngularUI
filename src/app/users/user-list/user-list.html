@@ -1,29 +1,39 @@
 <h2>User Management</h2>
 
-<!-- <div *ngIf="loading">Loading users...</div> -->
 <div *ngIf="loading" class="spinner-container">
   <mat-spinner diameter="40"></mat-spinner>
 </div>
-<p *ngIf="!loading && users.length === 0">No users found.</p>
 
-<table *ngIf="!loading && users.length > 0">
-  <thead>
+<p-table
+  *ngIf="!loading"
+  [value]="users"
+  [paginator]="true"
+  [rows]="10"
+  [responsiveLayout]="'scroll'"
+  tableStyleClass="p-dense user-table"
+  emptyMessage="No users found.">
+
+  <!-- Header -->
+  <ng-template pTemplate="header">
     <tr>
       <th>Username</th>
       <th>Role</th>
       <th>Actions</th>
     </tr>
-  </thead>
-  <tbody>
-    <tr *ngFor="let user of users">
+  </ng-template>
+
+  <!-- Body -->
+  <ng-template pTemplate="body" let-user>
+    <tr>
       <td>{{ user.username }}</td>
       <td>{{ user.role }}</td>
       <td>
-        <a [routerLink]="['/admin/users/edit', user.id]">
-          <button>Edit</button>
-        </a>
-        <button (click)="deleteUser(user.id)">Delete</button>
+        <button pButton label="Edit" icon="pi pi-pencil" class="p-button-sm p-button-info"
+                [routerLink]="['/admin/users/edit', user.id]"></button>
+        <button pButton label="Delete" icon="pi pi-trash" class="p-button-sm p-button-danger ml-2"
+                (click)="deleteUser(user.id)"></button>
       </td>
     </tr>
-  </tbody>
-</table>
+  </ng-template>
+
+</p-table>

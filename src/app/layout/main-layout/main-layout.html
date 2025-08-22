@@ -14,6 +14,11 @@
         <span style="color:white">Tasks</span>
       </a>
 
+      <a *ngIf="role === 'Admin' || role === 'Manager'" mat-list-item routerLink="/tasks/new">
+    <mat-icon>add</mat-icon>
+ <span style="color:white">Create Task</span>
+</a>
+
       <a *ngIf="role === 'Admin'" mat-list-item routerLink="/admin/users">
         <mat-icon>group</mat-icon>
         <span style="color:white">Users</span>
