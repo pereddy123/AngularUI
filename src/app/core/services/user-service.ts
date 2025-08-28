@@ -21,13 +21,17 @@ export class UserService {
   deleteUser(id: number): Observable<any> {
     return this.http.delete(`${this.baseUrl}/${id}`);
   }
+  createUser(user: { username: string; password: string; role: string }) {
+  return this.http.post<UserDto>(`${this.baseUrl}`, user);
+}
+
 addUser(user: { username: string; password: string; role: string }) {
   return this.http.post(this.baseUrl, user);
 }
 
-updateUser(id: number, user: { username: string; role: string }) {
-  return this.http.put(`${this.baseUrl}/${id}`, user);
-}
 
+updateUser(user: any) {
+  return this.http.put(`${this.baseUrl}/${user.id}`, user);
+}
 
 }

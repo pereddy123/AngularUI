@@ -1,17 +1,5 @@
 <h3>Tasks</h3>
 
-<!-- <div class="filter-bar">
-  <label for="statusFilter">Filter by Status:</label>
-  <p-dropdown 
-    [options]="statusOptions"
-    [(ngModel)]="selectedStatus"
-    placeholder="Select a status"
-    (onChange)="filterTasks()"
-    optionLabel="label"
-    styleClass="status-filter"
-  ></p-dropdown>
-</div> -->
-
 <p-table [value]="tasks" [paginator]="true" [rows]="10"   tableStyleClass="p-dense" [responsiveLayout]="'scroll'">
   <ng-template pTemplate="header">
     <tr>
@@ -19,20 +7,55 @@
       <th>Status</th>
       <th>Due Date</th>
       <th *ngIf="role !== 'Employee'">Assigned To</th>
+<th *ngIf="role === 'Employee'">Progress</th>
+<th *ngIf="role === 'Employee'">Comment</th>
     </tr>
   </ng-template>
+
   <ng-template pTemplate="body" let-task>
-    <tr>
-      <td>{{ task.title }}</td>
-      <td>
-        <span class="status-badge" [ngClass]="task.status.toLowerCase().replace(' ', '-')">
-          {{ task.status }}
-        </span>
-      </td>
-      <td>{{ task.dueDate | date:'mediumDate' }}</td>
-      <td *ngIf="role !== 'Employee'">{{ task.assignedToUsername }}</td>
-    </tr>
-  </ng-template>
+  <tr>
+    <td>{{ task.title }}</td>
+
+    <!-- Editable Status Dropdown -->
+    <td *ngIf="role === 'Employee'; else readonlyStatus">
+      <p-dropdown
+        [options]="statusOptions.slice(1)"  
+        [(ngModel)]="task.status"
+        (onChange)="updateTask(task)"
+        styleClass="p-inputtext-sm"
+        placeholder="Select status">
+      </p-dropdown>
+    </td>
+    <ng-template #readonlyStatus>
+      <span class="status-badge" [ngClass]="task.status.toLowerCase().replace(' ', '-')">
+        {{ task.status }}
+      </span>
+    </ng-template>
+
+    <!-- Due Date -->
+    <td>{{ task.dueDate | date:'mediumDate' }}</td>
+
+    <!-- Assigned To -->
+    <td *ngIf="role !== 'Employee'">{{ task.assignedToUsername }}</td>
+
+    <!-- Editable Progress -->
+    <td *ngIf="role === 'Employee'">
+      <input type="number"
+             [(ngModel)]="task.progress"
+             (change)="updateTask(task)"
+             min="0" max="100"
+             style="width: 60px;" />
+    </td>
+
+    <!-- Editable Comment -->
+    <td *ngIf="role === 'Employee'">
+      <input type="text"
+             [(ngModel)]="task.comment"
+             (blur)="updateTask(task)"
+             style="width: 100%;" />
+    </td>
+  </tr>
+</ng-template>
 </p-table>
 
 <p *ngIf="tasks.length === 0" class="no-tasks">No tasks found.</p>

@@ -9,3 +9,12 @@
   padding: 8px 10px;
   font-size: 14px;
 }
+::ng-deep .p-confirm-dialog .p-dialog-header {
+  font-weight: bold;
+  background-color: #f1f1f1;
+}
+
+::ng-deep .p-confirm-dialog .p-dialog-content {
+  font-size: 15px;
+}
+

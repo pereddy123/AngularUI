@@ -3,6 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface TaskDto {
+  progress: any;
+  comment: any;
   id: number;
   title: string;
   description: string;
@@ -51,4 +53,8 @@ updateStatus(id: number, newStatus: string) {
       `${this.baseUrl}/${taskId}/comments`
     );
   }
+  updateFields(id: number, update: { status: string, progress: number, comment: string }) {
+  return this.http.put(`${this.baseUrl}/${id}/fields`, update);
+}
+
 }

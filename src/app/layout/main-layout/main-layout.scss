@@ -35,7 +35,7 @@ app-header {
   border-radius: 12px;
   padding: 16px 12px;
   margin-bottom: 20px; // ✅ space above footer
-  height: calc(100% - 40px); // optional if needed
+  height: calc(100% - 1px); // optional if needed
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
 
   a {

@@ -28,6 +28,8 @@ export class TaskList implements OnInit {
   { label: 'In Progress', value: 'In Progress' },
   { label: 'Completed', value: 'Completed' }
 ];
+taskSnapshot: { [taskId: number]: { status: string; progress: number; comment: string } } = {};
+
 
 
   constructor(
@@ -50,44 +52,49 @@ export class TaskList implements OnInit {
   });
 });
     } else if (this.role === 'Employee') {
-      this.taskService.getAssigned().subscribe(res => {
-         setTimeout(() => {
+    this.taskService.getAssigned().subscribe(res => {
+  setTimeout(() => {
     this.allTasks = res;
     this.tasks = res;
-      this.cdr.detectChanges();
+
+    this.tasks.forEach(task => {
+      this.taskSnapshot[task.id] = {
+        status: task.status,
+        progress: task.progress,
+        comment: task.comment
+      };
+    });
+
+    this.cdr.detectChanges();
   });
-       
-
-        // Initialize statusUpdates for each task
-        this.tasks.forEach(task => {
-          this.statusUpdates[task.id] = task.status;
-        });
-
-        this.cdr.detectChanges();
-      });
+});
     }
   }
 
-// filterTasks() {
-//   if (!this.selectedStatus) {
-//     this.tasks = [...this.allTasks];
-//   } else {
-//     this.tasks = this.allTasks.filter(t => t.status === this.selectedStatus);
-//   }
-// }
+updateTask(task: TaskDto) {
+  const original = this.taskSnapshot[task.id];
 
+  // Only send if something changed
+  if (
+    task.status !== original.status ||
+    task.progress !== original.progress ||
+    task.comment !== original.comment
+  ) {
+    const payload = {
+      status: task.status ?? original.status,
+      progress: task.progress ?? original.progress,
+      comment: task.comment ?? original.comment
+    };
 
-  // updateTaskStatus(taskId: number) {
-  //   const newStatus = this.statusUpdates[taskId];
-  //   this.taskService.updateStatus(taskId, newStatus).subscribe({
-  //     next: () => {
-  //       const task = this.tasks.find(t => t.id === taskId);
-  //       if (task) task.status = newStatus;
-  //       this.toast.success('Status updated');
-  //     },
-  //     error: () => {
-  //       this.toast.error('Failed to update status');
-  //     }
-  //   });
-  // }
+    this.taskService.updateFields(task.id, payload).subscribe({
+      next: () => {
+        this.toast.success('Task updated');
+        // update snapshot
+        this.taskSnapshot[task.id] = { ...payload };
+      },
+      error: () => this.toast.error('Failed to update task')
+    });
+  }
+}
+
 }

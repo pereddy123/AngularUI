@@ -1,4 +1,8 @@
-<h2>User Management</h2>
+<h2 style="display: flex; justify-content: space-between; align-items: center;">
+  User Management
+  <button pButton icon="pi pi-plus" class="p-button-sm p-button-success"
+          (click)="showDialog = true" label="Add User"></button>
+</h2>
 
 <div *ngIf="loading" class="spinner-container">
   <mat-spinner diameter="40"></mat-spinner>
@@ -28,12 +32,75 @@
       <td>{{ user.username }}</td>
       <td>{{ user.role }}</td>
       <td>
-        <button pButton label="Edit" icon="pi pi-pencil" class="p-button-sm p-button-info"
-                [routerLink]="['/admin/users/edit', user.id]"></button>
-        <button pButton label="Delete" icon="pi pi-trash" class="p-button-sm p-button-danger ml-2"
+<button pButton icon="pi pi-pencil" class="p-button-sm p-button-info"
+        (click)="openEditDialog(user)" style="margin-right: 10px"></button>
+        <button pButton  icon="pi pi-trash" class="p-button-sm p-button-danger ml-2"
                 (click)="deleteUser(user.id)"></button>
       </td>
     </tr>
   </ng-template>
 
 </p-table>
+<!--Add Dialog-->
+<p-dialog header="Create New User" [(visible)]="showDialog" [modal]="true" [style]="{width: '400px'}">
+  <form [formGroup]="userForm" (ngSubmit)="addUser()">
+    <div class="p-fluid">
+      <div class="p-field">
+        <label>Username</label>
+        <input pInputText formControlName="username" />
+      </div>
+
+      <div class="p-field">
+        <label>Password</label>
+        <input pInputText type="password" formControlName="password" />
+      </div>
+
+      <div class="p-field">
+        <label>Role</label>
+        <p-dropdown [options]="roleOptions" formControlName="role"
+                    placeholder="Select Role" optionLabel="label"></p-dropdown>
+      </div>
+    </div>
+
+    <div class="p-dialog-footer">
+      <button pButton label="Cancel" class="p-button-text" type="button" (click)="showDialog = false"></button>
+      <button pButton label="Save" class="p-button-success" type="submit" [disabled]="userForm.invalid"></button>
+    </div>
+  </form>
+</p-dialog>
+
+<!--Edit Dialog-->
+<p-dialog header="Edit User" [(visible)]="showEditDialog" [modal]="true" [style]="{width: '400px'}">
+  <form [formGroup]="editUserForm" (ngSubmit)="updateUser()">
+    <div class="p-fluid">
+      <div class="p-field">
+        <label>Username</label>
+    <input pInputText formControlName="username" [disabled]="true" />
+
+      </div>
+
+      <div class="p-field">
+        <label>New Password (optional)</label>
+        <input pInputText type="password" formControlName="password" />
+      </div>
+
+      <div class="p-field">
+        <label>Role</label>
+        <p-dropdown
+          [options]="roleOptions"
+          formControlName="role"
+          placeholder="Select Role"
+          optionLabel="label"
+        ></p-dropdown>
+      </div>
+    </div>
+
+    <div class="p-dialog-footer">
+      <button pButton type="button" label="Cancel" class="p-button-text" (click)="showEditDialog = false"></button>
+      <button pButton type="submit" label="Save" class="p-button-success" [disabled]="editUserForm.invalid"></button>
+    </div>
+  </form>
+</p-dialog>
+
+<!--Delete Dialog-->
+<p-confirmDialog></p-confirmDialog>
