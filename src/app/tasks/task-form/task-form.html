@@ -14,10 +14,13 @@
   </div>
 
   <!-- Assigned User -->
-  <div class="form-group">
-    <label for="assignedToUserId">Assign To (User ID)</label>
-    <input type="number" pInputText id="assignedToUserId" formControlName="assignedToUserId" />
-  </div>
+<p-dropdown
+  [options]="userOptions"
+  formControlName="assignedToUserId"
+  placeholder="Select a user"
+  [filter]="true">
+</p-dropdown>
+
 
   <!-- Due Date -->
   <div class="form-group">

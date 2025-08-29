@@ -3,6 +3,7 @@
   padding: 4px 10px;
   border-radius: 12px;
   color: white;
+  margin-top: 10px;
   font-size: 13px;
   text-transform: capitalize;
   font-weight: 500;
@@ -41,19 +42,18 @@
 }
 
 .status-badge {
+  display: inline-block;
   padding: 4px 8px;
-  border-radius: 10px;
-  color: white;
-  font-size: 13px;
+  border-radius: 12px;
+  font-size: 12px;
+  white-space: nowrap;
   text-transform: capitalize;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+td {
+  vertical-align: middle;
 }
 
-.status-badge.new {
-  background-color: #42a5f5;
-}
-.status-badge.in-progress {
-  background-color: #ff9800;
-}
-.status-badge.completed {
-  background-color: #66bb6a;
-}
+

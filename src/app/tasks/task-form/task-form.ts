@@ -10,6 +10,10 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CalendarModule } from 'primeng/calendar';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { UserService } from '../../core/services/user-service';
+import { Table, TableModule } from 'primeng/table';
+import { DropdownModule} from 'primeng/dropdown';
+
 
 @Component({
   selector: 'app-task-form',
@@ -19,7 +23,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     InputTextModule,
     InputTextareaModule,
     CalendarModule,
-    ButtonModule],
+    ButtonModule,
+  DropdownModule,
+],
   templateUrl: './task-form.html',
     styleUrl: './task-form.scss'
 })
@@ -27,21 +33,42 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
  
 export class TaskForm implements OnInit {
   form: FormGroup;
+users: string[] = [];
+userOptions: { label: string; value: number }[] = [];
 
   constructor(
     private fb: FormBuilder,
     private taskService: TaskService,
+    private userService:UserService,
     private router: Router,
     private toast: ToastService
   ) {
-    this.form = this.fb.group({
-    title: ['', Validators.required],
-    description: ['', Validators.required],
-    assignedToUserId: [null, Validators.required],
-    dueDate: ['']
-  });}
+this.form = this.fb.group({
+  title: ['', Validators.required],
+  description: ['', Validators.required],
+  assignedToUserId: [null, Validators.required],  // ✅ now ID
+  dueDate: ['']
+});
 
-  ngOnInit(): void {}
+
+}
+
+
+
+
+
+ngOnInit(): void {
+  this.userService.getAllUsers().subscribe({
+    next: (res) => {
+      this.userOptions = res.map(u => ({
+        label: u.username,
+        value: u.id
+      }));
+    },
+    error: () => this.toast.error('Failed to load users')
+  });
+}
+
 
   submit() {
     if (this.form.invalid) return;

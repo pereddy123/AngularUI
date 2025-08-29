@@ -8,6 +8,7 @@ import { ToastService } from '../../core/services/toast-service';
 import { Table, TableModule } from 'primeng/table';
 import { DropdownModule} from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
+import { NgZone } from '@angular/core';
 
 @Component({
   selector: 'app-task-list',
@@ -33,6 +34,7 @@ taskSnapshot: { [taskId: number]: { status: string; progress: number; comment: s
 
 
   constructor(
+    private ngZone: NgZone,
     private taskService: TaskService,
     private cdr: ChangeDetectorRef,
     private auth: AuthService,
@@ -52,8 +54,8 @@ taskSnapshot: { [taskId: number]: { status: string; progress: number; comment: s
   });
 });
     } else if (this.role === 'Employee') {
-    this.taskService.getAssigned().subscribe(res => {
-  setTimeout(() => {
+      this.taskService.getAssigned().subscribe(res => {
+  this.ngZone.run(() => {
     this.allTasks = res;
     this.tasks = res;
 
@@ -64,10 +66,9 @@ taskSnapshot: { [taskId: number]: { status: string; progress: number; comment: s
         comment: task.comment
       };
     });
-
-    this.cdr.detectChanges();
   });
 });
+
     }
   }
 
