@@ -10,6 +10,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
+import { setUsername } from '../../state/user.actions';
+import { Store } from '@ngrx/store';
 
 @Component({
   selector: 'app-main-layout',
@@ -23,7 +25,7 @@ export class MainLayout {
   role: string | null;
 
 
-  constructor(private auth: AuthService, private router: Router) {
+  constructor(private auth: AuthService, private router: Router,private store: Store) {
       this.username = this.auth.getUsername();
   this.role = this.auth.getUserRole();
   }

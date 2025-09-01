@@ -4,7 +4,9 @@
   <span class="spacer"></span>
 
   <div class="user-info">
-    <span>{{ username }}</span>
+    <!-- <span>{{ username }}</span> -->
+     <span *ngIf="username$ | async as username">{{ username }}</span>
+
 <span class="custom-chip">{{ role }}</span>
 
 

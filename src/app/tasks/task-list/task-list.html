@@ -7,8 +7,8 @@
       <th>Status</th>
       <th>Due Date</th>
       <th *ngIf="role !== 'Employee'">Assigned To</th>
-<th *ngIf="role === 'Employee'">Progress</th>
-<th *ngIf="role === 'Employee'">Comment</th>
+<th>Progress</th>
+<th >Comment</th>
     </tr>
   </ng-template>
 
@@ -38,9 +38,34 @@
 
     <!-- Assigned To -->
     <td *ngIf="role !== 'Employee'">{{ task.assignedToUsername }}</td>
+<!-- Progress -->
+<td>
+  <ng-container *ngIf="role === 'Employee'; else readonlyProgress">
+    <input type="number"
+           [(ngModel)]="task.progress"
+           (change)="updateTask(task)"
+           min="0" max="100"
+           style="width: 60px;" />
+  </ng-container>
+  <ng-template #readonlyProgress>
+    <span>{{ task.progress }}%</span>
+  </ng-template>
+</td>
 
-    <!-- Editable Progress -->
-    <td *ngIf="role === 'Employee'">
+<!-- Comment -->
+<td>
+  <ng-container *ngIf="role === 'Employee'; else readonlyComment">
+    <input type="text"
+           [(ngModel)]="task.comment"
+           (blur)="updateTask(task)"
+           style="width: 100%;" />
+  </ng-container>
+  <ng-template #readonlyComment>
+    <span>{{ task.comment }}</span>
+  </ng-template>
+</td>
+  
+    <!-- <td *ngIf="role === 'Employee'">
       <input type="number"
              [(ngModel)]="task.progress"
              (change)="updateTask(task)"
@@ -48,13 +73,13 @@
              style="width: 60px;" />
     </td>
 
-    <!-- Editable Comment -->
+  
     <td *ngIf="role === 'Employee'">
       <input type="text"
              [(ngModel)]="task.comment"
              (blur)="updateTask(task)"
              style="width: 100%;" />
-    </td>
+    </td> -->
   </tr>
 </ng-template>
 </p-table>

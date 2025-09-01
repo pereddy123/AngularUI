@@ -21,7 +21,7 @@
   },
   "private": true,
   "dependencies": {
-    "@angular/animations": "^20.2.1",
+    "@angular/animations": "^20.1.6",
     "@angular/cdk": "^20.1.6",
     "@angular/common": "^20.1.0",
     "@angular/compiler": "^20.1.0",
@@ -32,6 +32,7 @@
     "@angular/platform-server": "^20.1.0",
     "@angular/router": "^20.1.0",
     "@angular/ssr": "^20.1.5",
+    "@ngrx/store": "^20.0.1",
     "chart.js": "^4.5.0",
     "express": "^5.1.0",
     "ng2-charts": "^8.0.0",

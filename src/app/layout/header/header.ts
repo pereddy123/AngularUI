@@ -8,6 +8,10 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatChipsModule } from '@angular/material/chips';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
+import { Store } from '@ngrx/store';
+import { selectUsername } from '../../state/user/user.selectors'; // adjust path
+import { AppState } from '../../app.state';
+import { Observable } from 'rxjs';
 
 
 
@@ -20,12 +24,19 @@ import { MatButtonModule } from '@angular/material/button';
 export class Header {
   username: any;
   role: string | null;
+username$: Observable<string | null> | undefined;
 
 
-  constructor(private auth: AuthService, private router: Router) {
+  constructor(private auth: AuthService, private router: Router,private store: Store<AppState>) {
   this.username = this.auth.getUsername();
   this.role = this.auth.getUserRole();
+  
   }
+
+
+ngOnInit(): void {
+  this.username$ = this.store.select(selectUsername);
+}
 
   logout() {
     this.auth.logout();

@@ -52,10 +52,11 @@ taskSnapshot: { [taskId: number]: { status: string; progress: number; comment: s
     this.tasks = res;
       this.cdr.detectChanges();
   });
+     this.cdr.detectChanges();
 });
     } else if (this.role === 'Employee') {
       this.taskService.getAssigned().subscribe(res => {
-  this.ngZone.run(() => {
+  setTimeout(() => {
     this.allTasks = res;
     this.tasks = res;
 
@@ -66,7 +67,10 @@ taskSnapshot: { [taskId: number]: { status: string; progress: number; comment: s
         comment: task.comment
       };
     });
+
+    this.cdr.detectChanges();
   });
+   this.cdr.detectChanges();
 });
 
     }
