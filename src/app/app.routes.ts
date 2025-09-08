@@ -1,18 +1,14 @@
 import { Routes } from '@angular/router';
 import { Login } from './auth/login/login';
-import { authGuard } from './core/guards/auth-guard';
-import { roleGuard } from './core/guards/role-guard';
-
-// Placeholder components for now
-import { Dashboard } from './dashboard/dashboard';
-import { TaskList } from './tasks/task-list/task-list';
-import { TaskForm } from './tasks/task-form/task-form';
-import { TaskDetail } from './tasks/task-detail/task-detail';
-import { UserList } from './users/user-list/user-list';
-
-
+import { authGuard } from '../app/guards/auth-guard';
+import { roleGuard } from '../app/guards/role-guard';
+import { Dashboard } from '../app/components/dashboard/dashboard';
+import { TaskList } from '../app/components/tasks/task-list/task-list'
+import { TaskForm } from '../app/components/tasks/task-form/task-form'
+import { TaskDetail } from '../app/components/tasks/task-detail/task-detail'
+import { UserList } from '../app/components/users/user-list/user-list';
 import { MainLayout } from './layout/main-layout/main-layout';
-import { Unauthorized } from './shared/unauthorized/unauthorized';
+import { Unauthorized } from '../app/pages/unauthorized/unauthorized';
 
 export const routes: Routes = [
   {

@@ -1,9 +1,9 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
-import { UserService,UserDto } from '../../core/services/user-service';
+import { UserService } from '../../../services/user-service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { ToastService } from '../../core/services/toast-service';
+import { ToastService} from '../../../services/toast-service'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
@@ -13,6 +13,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule, ReactiveFormsModule, FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
+import { UserDto } from '../../../models/UserDto';
 
 
 @Component({

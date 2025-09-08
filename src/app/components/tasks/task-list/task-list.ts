@@ -1,14 +1,15 @@
 import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TaskService,TaskDto } from '../../core/services/task-service';
-import { AuthService } from '../../core/services/auth-service';
+import { TaskService } from '../../../services/task-service';
+import { AuthService } from '../../../services/auth-service';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { ToastService } from '../../core/services/toast-service';
+import { ToastService } from '../../../services/toast-service';
 import { Table, TableModule } from 'primeng/table';
 import { DropdownModule} from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
 import { NgZone } from '@angular/core';
+import { TaskDto } from '../../../models/TaskDto';
 
 @Component({
   selector: 'app-task-list',

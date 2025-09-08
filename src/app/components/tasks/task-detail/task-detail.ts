@@ -5,9 +5,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { TaskService,TaskDto } from '../../core/services/task-service';
+import { TaskService } from '../../../services/task-service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { ToastService } from '../../core/services/toast-service';
+import { ToastService } from '../../../services/toast-service';
+import { TaskDto } from '../../../models/TaskDto';
 @Component({
   selector: 'app-task-detail',
  imports: [CommonModule, FormsModule, MatSnackBarModule],

@@ -1,22 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import{environment} from '../environments/environment'
+import { TaskDto } from '../models/TaskDto';
 
-export interface TaskDto {
-  progress: any;
-  comment: any;
-  id: number;
-  title: string;
-  description: string;
-  status: string;
-  dueDate?: string;
-  assignedToUsername: string;
-}
+
 
 @Injectable({ providedIn: 'root' })
 export class TaskService {
-  private baseUrl = 'https://localhost:44392/api/tasks';
-
+  // // private baseUrl = 'https://workspherewebapp-d0cmhsd6hcgxbvck.canadacentral-01.azurewebsites.net/api/tasks';
+ private baseUrl = `${environment.apiBaseUrl}/tasks`;
   constructor(private http: HttpClient) {}
 
   getAll(): Observable<TaskDto[]> {

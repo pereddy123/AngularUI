@@ -1,16 +1,13 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-export interface UserDto {
-  id: number;
-  username: string;
-  role: string;
-}
+import { UserDto } from '../models/UserDto';
+import{ environment } from '../environments/environment'
 
 @Injectable({ providedIn: 'root' })
 export class UserService {
-  private baseUrl = 'https://localhost:44392/api/users';
+  // private baseUrl = 'https://workspherewebapp-d0cmhsd6hcgxbvck.canadacentral-01.azurewebsites.net/api/users';
+private baseUrl = `${environment.apiBaseUrl}/users`;
 
   constructor(private http: HttpClient) {}
 
@@ -29,9 +26,11 @@ addUser(user: { username: string; password: string; role: string }) {
   return this.http.post(this.baseUrl, user);
 }
 
-
 updateUser(user: any) {
   return this.http.put(`${this.baseUrl}/${user.id}`, user);
 }
+
+
+
 
 }

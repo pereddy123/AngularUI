@@ -3,7 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { AuthService } from './core/services/auth-service';
+import { AuthService } from '../app/services/auth-service';
 import { CommonModule } from '@angular/common';
 
 

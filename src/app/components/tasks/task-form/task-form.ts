@@ -1,16 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {  FormBuilder, Validators, FormGroup } from '@angular/forms';
-import { TaskService } from '../../core/services/task-service';
+import { TaskService } from '../../../services/task-service';
 import { Router } from '@angular/router';
-import { ToastService } from '../../core/services/toast-service';
+import { ToastService } from '../../../services/toast-service';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { InputTextModule } from 'primeng/inputtext';
 import { InputTextareaModule } from 'primeng/inputtextarea';
 import { CalendarModule } from 'primeng/calendar';
 import { ButtonModule } from 'primeng/button';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { UserService } from '../../core/services/user-service';
+import { UserService } from '../../../services/user-service';
 import { Table, TableModule } from 'primeng/table';
 import { DropdownModule} from 'primeng/dropdown';
 

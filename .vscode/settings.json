@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/53ed4d16-80b0-4aa2-89a1-ec8b31b7b292/resourceGroups/WorksphereUI_group/providers/Microsoft.Web/sites/WorksphereUI",
+    "appService.deploySubpath": "dist\\WorkSphere"
+}

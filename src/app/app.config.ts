@@ -13,7 +13,7 @@ import { routes } from './app.routes';
 import { provideCharts, withDefaultRegisterables } from 'ng2-charts';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { userReducer } from './state/user/user.reducer';
-import { httpInterceptorProviders } from './core/interceptor';// ⬅️ Import here
+import { httpInterceptorProviders } from '../app/interceptor';
 import { provideStore } from '@ngrx/store';
 
 export const appConfig: ApplicationConfig = {

@@ -1,14 +1,16 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { environment } from '../../app/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-  private apiUrl = 'https://localhost:44392/api/auth'; // your backend
+  // private apiUrl = 'https://workspherewebapp-d0cmhsd6hcgxbvck.canadacentral-01.azurewebsites.net/api/auth'; // your backend
 
+ private baseUrl = `${environment.apiBaseUrl}/auth`;
   constructor(private http: HttpClient) {}
 
   login(credentials: { username: string; password: string }) {
-    return this.http.post<{ token: string }>(`${this.apiUrl}/login`, credentials);
+    return this.http.post<{ token: string }>(`${this.baseUrl}/login`, credentials);
   }
 
   setToken(token: string) {
